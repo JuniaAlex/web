@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eduplanner</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="initializeApp()">
+    <header class="header">
+        <div class="logo">Eduplanner</div>
+        <button id="modeToggle" class="mode-toggle" onclick="toggleMode()">Dark</button>
+    </header>
+
+    <nav class="sidebar">
+        <a href="#" onclick="showSection('home')" id="home-icon">🏠</a>
+        <a href="#" onclick="showSection('subjects')" id="subjects-icon">📚</a>
+        <a href="#" onclick="showSection('todo')" id="todo-icon">✔️</a>
+        <a href="#" onclick="showSection('timer')" id="timer-icon">⏱️</a>
+        <a href="#" onclick="showSection('calendar')" id="calendar-icon">📅</a>
+    </nav>
+
+    <main class="container">
+        <section id="home" class="section active">
+            <h1 id="motivationalQuote" class="quote">Dream big, plan smart, succeed confidently.</h1>
+            <p class="subquote"></p>
+            <div class="dashboard">
+                <div class="card">
+                    <h2>Overall Score</h2>
+                    <div class="progress-circle">
+                        <svg width="120" height="120">
+                            <circle class="background-circle" cx="60" cy="60" r="50" />
+                            <circle id="progress-circle" class="progress" cx="60" cy="60" r="50" stroke-dasharray="0 314" />
+                        </svg>
+                        <div id="overall-score-text" class="text">0%</div>
+                    </div>
+                </div>
+                <div class="card"><h2>Creative Suggestion</h2><p>Unlock new heights: Study smarter today!</p></div>
+                <div class="card"><h2>Today's Study Plan</h2><p><button class="view-plan-btn" onclick="showSection('todo')">📋 View Plan</button></p></div>
+            </div>
+        </section>
+
+        <section id="subjects" class="section">
+            <div class="card">
+                <h2>Subjects</h2>
+                <div class="input-group">
+                    <input id="subjectName" type="text" placeholder="Subject Name" aria-label="Subject Name">
+                    <input id="subjectGrade" type="number" placeholder="Grade (0-100)" min="0" max="100" aria-label="Subject Grade">
+                    <button onclick="addSubject()">Add Subject</button>
+                </div>
+                <ul id="subjectList"></ul>
+            </div>
+        </section>
+
+        <section id="todo" class="section">
+            <div class="card">
+                <h2>To-Do List</h2>
+                <div class="input-group">
+                    <input id="taskInput" type="text" placeholder="Task" aria-label="Task">
+                    <input id="taskDeadline" type="date" aria-label="Task Deadline">
+                    <button onclick="addTask()">Add Task</button>
+                </div>
+                <ul id="taskList"></ul>
+            </div>
+        </section>
+
+        <section id="calendar" class="section">
+            <div class="card">
+                <h2 id="calendarTitle">Calendar</h2>
+                <div id="calendarGrid" class="calendar-grid"></div>
+                <p>Click a date to view tasks.</p>
+            </div>
+        </section>
+
+        <section id="timer" class="section">
+            <div class="card">
+                <h2>Study Timer</h2>
+                <div id="timerDisplay" class="timer">25:00:00</div>
+                <div class="input-group">
+                    <input id="timerHours" type="number" placeholder="HH" min="0" max="23" aria-label="Timer Hours">
+                    <input id="timerMinutes" type="number" placeholder="MM" min="0" max="59" aria-label="Timer Minutes">
+                    <input id="timerSeconds" type="number" placeholder="SS" min="0" max="59" aria-label="Timer Seconds">
+                    <button onclick="setCustomTimer()">Set Timer</button>
+                </div>
+                <div class="button-group">
+                    <button class="timer-btn" onclick="startTimer()">Start</button>
+                    <button class="timer-btn" onclick="stopTimer()">Stop</button>
+                    <button class="timer-btn" onclick="resetTimer()">Reset</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
